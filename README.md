@@ -8,8 +8,8 @@ docker run -d --name kafka -p 9200:9200 -v /home/core/shared/templates/kafka-tem
 ```
 
 #### Note:
-The `--dns` option must specify the address of the consul agent, which will be the private IP of the host instance/machine.
-(usually it can be founded by the `hostname -i` command)
+* The `--dns` option must specify the address of the consul agent, which will be the private IP of the host instance/machine. (usually it can be founded by the `hostname -i` command)
+* Provide the volume mapping (`-v`) if you want to use a custom template for kafka. If the one provided in this repo is enough for your use, you can skip this mapping. 
 
 
 ## Sample Template
@@ -29,16 +29,16 @@ docker run -d --name zookeeper --label SERVICE_NAME=zookeeper -p 2181:2181 zooke
 #### Consul Key-Value entries:
 1. The host required to tell clients where to find the broker as well as to communicate with the broker itself.
 
-  key: `kafka/advertisedHost`
+    key: `kafka/advertisedHost`
 
-  Example: `172.17.9.101`
+    Example: `172.17.9.101`
 
-  Usually this would be the private IP of the instance/machine that is running kafka
+    Usually this would be the private IP of the instance/machine that is running kafka
 
 2. The port for the advertised host.
 
-  key: `kafka/advertisedPort`
+    key: `kafka/advertisedPort`
 
-  Example: `9200`
+    Example: `9200`
 
-  This port must be same as the one exposed during running the docker container
+    This port must be same as the one exposed during running the docker container
